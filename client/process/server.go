@@ -10,7 +10,7 @@ import (
 )
 
 //显示登录成功后的界面
-func ShowMenu() {
+func ShowMenu(userId int) {
 	fmt.Println("-------恭喜xxx登录成功---------")
 	fmt.Println("-------1. 显示在线用户列表---------")
 	fmt.Println("-------2. 发送消息---------")
@@ -48,7 +48,7 @@ func ShowMenu() {
 		} else if num == "b" {
 			fmt.Println("b、发送私信")
 			fmt.Println("请输入你想说的话: ")
-			fmt.Scanf("%s\n",&content)
+			fmt.Scanf("%s\n", &content)
 			fmt.Println("请输入聊天的用户id: ")
 			fmt.Scanf("%d\n", &ohterUserId)
 			smsProcess.SendUserMes(content, ohterUserId)
@@ -61,7 +61,8 @@ func ShowMenu() {
 		fmt.Println("信息列表...")
 	case 4:
 		fmt.Println("退出系统...")
-		smsProcess.putUserStatus(12)
+		smsProcess.putUserStatus(userId)
+		fmt.Printf("用户%v\n下线成功", userId)
 		os.Exit(0)
 	default:
 		fmt.Println("你输入的选项不对请重新输入。。。")

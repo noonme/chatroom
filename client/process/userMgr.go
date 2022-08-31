@@ -35,8 +35,6 @@ func updateUserStatus(notifyUserStatusMes *message.NotifyUserStatusMes) {
 	outputOnlineUser()
 }
 
-
-
 func updateOffUserStatus(notifyUserStatusMes *message.ExitLoginResMes) {
 	//适当优化
 
@@ -45,12 +43,11 @@ func updateOffUserStatus(notifyUserStatusMes *message.ExitLoginResMes) {
 		//如果有更新状态即可
 		user.UserStatus = notifyUserStatusMes.UserStatus
 		onlineUsers[notifyUserStatusMes.UsersId] = user
-		fmt.Printf("user.UserStatus=%v user.UsersId=%v\n  ",user.UserStatus,user.UserId)
+		fmt.Printf("user.UserStatus=%v user.UsersId=%v\n  ", user.UserStatus, user.UserId)
 
-
-		delete(onlineUsers,notifyUserStatusMes.UsersId)
+		//onlineUser中删除下线的userid
+		delete(onlineUsers, notifyUserStatusMes.UsersId)
 		outputOnlineUser()
 	}
-
 
 }
